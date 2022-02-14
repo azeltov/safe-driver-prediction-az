@@ -8,23 +8,7 @@ on:
         description: Environment to run the pipeline in.
         default: 'Development'
         type: string
-
-    secrets:
-      azure_sp_creds:
-        description: Azure Service Principal Credentials
-        required: true
-      datastore_sas_token:
-        description: Datastore SAS Token
-        required: true
-      AML_WORKSPACE:
-        description: Azure Machine Learning Workspace
-        required: true
-      AML_RESOURCE_GROUP:
-        description: Azure Machine Learning Resource Group
-        required: true
-      AML_SUBSCRIPTION:
-        description: Azure Machine Learning Subscription ID
-        required: true  
+ 
 
 jobs:
   pipeline:
@@ -40,10 +24,11 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: "3.8"
-      - name: Install Python Build Agent Dependencies
-        run: |
-          pip install pip==20.2.3
-          pip install -r ./.github/workflows/build-requirements.txt
+      # - name: Install Python Build Agent Dependencies
+      #   run: |
+      #     pip install pip==20.2.3
+      #     pip install -r ./.github/workflows/build-requirements.txt
+
       - name: Azure Login
         uses: azure/login@v1
         with:
