@@ -65,4 +65,8 @@ jobs:
           az config set defaults.workspace=${{secrets.AML_WORKSPACE}}
           az config set defaults.group=${{secrets.AML_RESOURCE_GROUP}}
           az account set -s ${{secrets.AML_SUBSCRIPTION}}  
+
+      - name: Register Environment
+        run: |
+          make env
  

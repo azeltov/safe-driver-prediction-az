@@ -1,4 +1,4 @@
-environment:
+env:
 	az ml environment create --file ./safe-driver/environ/environment.yml
 
 train:
