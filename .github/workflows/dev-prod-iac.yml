@@ -1,0 +1,28 @@
+name: Setup Dev and Prod AML Workspaces
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  Development:
+    uses: azeltov/safe-driver-prediction-az/.github/workflows/iac.yml@main
+    with:
+      environment: Development
+    secrets:
+      azure_sp_creds: ${{ secrets.AZURE_SP_CREDS }}
+      datastore_sas_token: ${{ secrets.PUBLICMLDATASC_SAS_TOKEN }}
+      AML_WORKSPACE: ${{ secrets.AML_WORKSPACE }}
+      AML_RESOURCE_GROUP: ${{ secrets.AML_RESOURCE_GROUP }}
+      AML_SUBSCRIPTION: ${{ secrets.AML_SUBSCRIPTION }}
+  Production:
+    needs:
+      - Development
+    uses: azeltov/safe-driver-prediction-az/.github/workflows/iac.yml@main
+    with:
+      environment: Production
+    secrets:
+      azure_sp_creds: ${{ secrets.AZURE_SP_CREDS }}
+      datastore_sas_token: ${{ secrets.PUBLICMLDATASC_SAS_TOKEN }}
+      AML_WORKSPACE: ${{ secrets.AML_WORKSPACE }}
+      AML_RESOURCE_GROUP: ${{ secrets.AML_RESOURCE_GROUP }}
+      AML_SUBSCRIPTION: ${{ secrets.AML_SUBSCRIPTION }}

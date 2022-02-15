@@ -1,13 +1,20 @@
-name: IaC
+name: Run IaC
 
-on: 
-  workflow_dispatch:
+on:
+  workflow_call:    
     inputs:
       environment:
         required: true
         description: Environment to run the pipeline in.
         type: string
-
+      submit_pipeline:
+        required: false
+        type: string
+        default: 'true'
+      publish_pipeline:
+        required: false
+        type: string
+        default: 'false'
     secrets:
       azure_sp_creds:
         description: Azure Service Principal Credentials
@@ -23,7 +30,8 @@ on:
         required: true
       AML_SUBSCRIPTION:
         description: Azure Machine Learning Subscription ID
-        required: true  
+        required: true
+ 
 
 jobs:
   pipeline:
@@ -57,7 +65,4 @@ jobs:
           az config set defaults.workspace=${{secrets.AML_WORKSPACE}}
           az config set defaults.group=${{secrets.AML_RESOURCE_GROUP}}
           az account set -s ${{secrets.AML_SUBSCRIPTION}}  
-
-      - name: Register Environment
-        run: |
-          az ml environment create --file ./safe-driver/environ/environment.yml      
+ 
