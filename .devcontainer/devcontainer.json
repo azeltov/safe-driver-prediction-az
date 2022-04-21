@@ -19,5 +19,7 @@
         "azure-cli": "latest"
     },
     "remoteUser": "vscode",
-    "onCreateCommand": "az extension add -n ml -y",
+    "mounts": ["source=${localEnv:HOME}/data/safedriver/input,target=/home/vscode/data/safedriver/input,type=bind,readonly=true,consistency=cached",
+        "source=${localEnv:HOME}/data/safedriver/output,target=/home/vscode/data/safedriver/output,type=bind,readonly=false,consistency=cached"],
+    "onCreateCommand": "az extension add -n ml -y"
 }

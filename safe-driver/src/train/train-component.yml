@@ -12,8 +12,7 @@ description: >-
     Prep the data and split into labels and features
 is_deterministic: true
 
-code:
-  local_path: ./
+code: ./
 
 environment: azureml:lightgbm:1
 inputs:
