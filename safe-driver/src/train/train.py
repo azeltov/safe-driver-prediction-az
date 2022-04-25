@@ -10,6 +10,7 @@ from typing import Dict
 import typer
 import lightgbm
 import mlflow
+
 import numpy as np
 import pandas as pd
 from lightgbm import Dataset, Booster
@@ -17,6 +18,7 @@ from pandas import DataFrame
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 from azureml.core import Run
+from mlflow.models.signature import infer_signature
 
 METADATA_JSON = "metadata.json"
 MODEL_NAME = "SafeDriverModel"
@@ -86,6 +88,7 @@ def predict_best_threshold(fpr, tpr, thresholds):
 def get_model_metrics(model: Booster, data: Dataset) -> dict:
     """Construct a dictionary of metrics for the model"""
 
+
     predictions = model.predict(data.data)
     fpr, tpr, thresholds = metrics.roc_curve(data.label, predictions)
 
@@ -154,10 +157,9 @@ def main(
                           test_size=test_size,
                           random_state=random_state)
 
+
     with mlflow.start_run() as run:
 
-        # Autolog the parameters to Azure Machine Learning
-        mlflow.lightgbm.autolog()
 
         # Train the model and calculate model metrics
         _ = train_model(datasets, model_params)
@@ -175,4 +177,6 @@ def main(
 
 
 if __name__ == "__main__":
+    # Autolog the parameters to Azure Machine Learning
+    mlflow.lightgbm.autolog()
     typer.run(main)

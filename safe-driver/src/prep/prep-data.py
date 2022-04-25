@@ -51,6 +51,7 @@ def main(
     if not isinstance(drop_columns, list):
         drop_columns = list(drop_columns)
     drop_columns.append(label_column)
+    drop_columns.append('Unnamed: 0')
 
     labels = data_df[[label_column]]
     features = data_df.drop(drop_columns, axis=1)

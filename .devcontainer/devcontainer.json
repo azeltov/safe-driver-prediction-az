@@ -19,7 +19,7 @@
         "azure-cli": "latest"
     },
     "remoteUser": "vscode",
-    "mounts": ["source=${localEnv:HOME}/data/safedriver/input,target=/home/vscode/data/safedriver/input,type=bind,readonly=true,consistency=cached",
-        "source=${localEnv:HOME}/data/safedriver/output,target=/home/vscode/data/safedriver/output,type=bind,readonly=false,consistency=cached"],
+    "mounts": ["source=${localEnv:HOME}/cloudfiles/data/dataset/safedriver_input,target=/home/vscode/data/safedriver/input,type=bind,readonly=true,consistency=cached",
+        "source=${localEnv:HOME}/cloudfiles/code/Users/alzeltov/safe-driver-output,target=/home/vscode/data/safedriver/output,type=bind,readonly=false,consistency=cached"],
     "onCreateCommand": "az extension add -n ml -y"
 }

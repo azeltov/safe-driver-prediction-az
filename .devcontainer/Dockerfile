@@ -9,3 +9,6 @@ RUN /opt/conda/bin/conda env update -n base -f /tmp/conda-tmp/conda-environment.
 # Add dev specific packages
 COPY .devcontainer/dev-requirements.txt /tmp/requirements-tmp/
 RUN /opt/conda/bin/pip install -r /tmp/requirements-tmp/dev-requirements.txt && rm -rf /tmp/requirements-tmp
+
+#create mlflow ui conda environment
+RUN /opt/conda/bin/conda env create --name mlflowui python==3.9 mlflow
