@@ -131,3 +131,4 @@ dmypy.json
 mlruns/
 .ipynb_checkpoints/
 .amlignore
+safe-driver/data/output/
