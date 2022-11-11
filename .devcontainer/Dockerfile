@@ -11,4 +11,4 @@ COPY .devcontainer/dev-requirements.txt /tmp/requirements-tmp/
 RUN /opt/conda/bin/pip install -r /tmp/requirements-tmp/dev-requirements.txt && rm -rf /tmp/requirements-tmp
 
 #create mlflow ui conda environment
-RUN /opt/conda/bin/conda create --name mlflow python==3.8 
+RUN /opt/conda/bin/conda create --name mlflow python==3.10 
