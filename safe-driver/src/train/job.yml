@@ -10,7 +10,7 @@ experiment_name: dev-training
 inputs:
   training_data:
     type: uri_file
-    path: azureml:safe_driver:1
+    path: azureml:safedriver_input_fs@latest
 outputs:
     metadata:    
 command: >-
