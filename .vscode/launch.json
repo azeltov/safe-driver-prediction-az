@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Prep Data",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["--input-data", "safe-driver/data/input", "--labels-output", "safe-driver/data/output/labels", "--features-output", "safe-driver/data/output/features", "--label-column", "target", "id"],
+            "justMyCode": true
+        },
+        {
+            "name": "Train",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["--feature-data", "safe-driver/data/output/features", "--label-data", "safe-driver/data/output/labels", "--output-folder", "safe-driver/data/output/train"],
+            "justMyCode": true
+        },
+        {
+            "name": "Evaluate",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [ "--model-metadata", "safe-driver/data/output/train", "--recommendation-folder", "safe-driver/data/output/recommendation","--validation-data-path",    "/home/vscode/data/safedriver/input"],
+            "justMyCode": true
+        },        
+    ]
+}

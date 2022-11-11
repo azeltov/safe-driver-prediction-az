@@ -130,5 +130,4 @@ dmypy.json
 
 mlruns/
 .ipynb_checkpoints/
-.vscode/launch.json
 .amlignore
