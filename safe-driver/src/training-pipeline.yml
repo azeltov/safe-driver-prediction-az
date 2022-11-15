@@ -12,7 +12,9 @@ compute: azureml:cpu-cluster
 
 inputs:
   raw_data:
-    dataset: azureml:safe_driver:1
+    type: uri_folder
+    path: azureml:safe_driver_input@latest
+    # dataset: azureml:safe_driver_input@latest
   validation_data:
     dataset: azureml:safe_driver_validation:1
   learning_rate: 0.03

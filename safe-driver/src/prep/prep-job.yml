@@ -5,11 +5,20 @@
 
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 compute: azureml:cpu-cluster
-environment: azureml:lightgbm:2022-02-07-16-59-11-4201152
+environment: azureml:lightgbm@latest
 experiment_name: dev-prep
 inputs:
   input_dataset:
-    dataset: azureml:safe_driver:1
+    type: uri_folder
+    path: azureml:safe_driver_input@latest
+    # type: mltable
+    # path: azureml:safe_driver_input:1
+    # mode: eval_mount
+    #type: uri_folder
+    #path: azureml://datastores/trainingdata/5b1636ab-6a29-4f2e-990c-9ef83542b3f7/porto_seguro_safe_driver_prediction_input.csv
+    
+    #https://drvrhackamlsa.blob.core.windows.net/trainingdata/5b1636ab-6a29-4f2e-990c-9ef83542b3f7/porto_seguro_safe_driver_prediction_input.csv
+
 outputs:
     labels:
       mode: upload
@@ -22,5 +31,4 @@ command: >-
   --features-output ${{outputs.features}}
   --label-column target
   id
-code:
-  local_path: ./
+code: ./

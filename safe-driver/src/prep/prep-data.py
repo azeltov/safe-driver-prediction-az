@@ -43,6 +43,7 @@ def main(
     features_output: Path = typer.Option(..., dir_okay=True, file_okay=False),
     label_column: str = 'target',
 ):
+    print("Data Prep Starting...")
     data_df = read_dataframe(input_data)
 
     labels_output.mkdir(exist_ok=True, parents=True)
@@ -58,7 +59,9 @@ def main(
 
     labels.to_parquet(labels_output / 'labels.parquet')
     features.to_parquet(features_output / 'features.parquet')
+    print("Data Prep End.")
 
 
 if __name__ == '__main__':
     typer.run(main)
+

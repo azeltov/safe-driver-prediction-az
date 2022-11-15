@@ -1,0 +1,22 @@
+# Copyright (c) 2022 Microsoft
+# 
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+compute: azureml:cpu-cluster
+environment: azureml:nyc-taxi@latest
+experiment_name: dev-prep
+inputs:
+  input_dataset:
+    type: uri_folder
+    path: azureml:nyc_taxi_raw:1
+outputs:
+    prep_data:
+      mode: upload
+
+command: >-
+  python prep.py 
+  --raw_data ${{inputs.input_dataset}} 
+  --prep_data ${{outputs.prep_data}}
+code: ./
